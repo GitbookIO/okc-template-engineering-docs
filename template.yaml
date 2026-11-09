@@ -1,0 +1,85 @@
+# Questions the app asks when someone creates a repo from this template.
+# Each answer can leave files out by glob. Within one option, patterns apply in
+# order, the last match wins, and a leading ! keeps a file.
+questions:
+  - id: prs
+    title: Where do your pull requests live?
+    hint: Merged pull requests feed the System pages and the drift check against specs
+    options:
+      - id: github
+        label: GitHub
+      - id: none
+        label: None for now
+        files:
+          exclude:
+            - 'workflows/ingest-prs-*.md'
+  - id: issues
+    title: Where do you track issues?
+    hint: Issues feed the open work on each System page
+    options:
+      - id: linear
+        label: Linear
+        files:
+          exclude:
+            - 'workflows/ingest-issues-*.md'
+            - '!workflows/ingest-issues-linear.md'
+      - id: jira
+        label: Jira
+        files:
+          exclude:
+            - 'workflows/ingest-issues-*.md'
+            - '!workflows/ingest-issues-jira.md'
+      - id: none
+        label: None for now
+        files:
+          exclude:
+            - 'workflows/ingest-issues-*.md'
+  - id: incidents
+    title: Where do production errors show up?
+    hint: Resolved incidents feed runbooks and the System pages
+    options:
+      - id: sentry
+        label: Sentry
+      - id: none
+        label: None for now
+        files:
+          exclude:
+            - 'workflows/ingest-incidents-*.md'
+  - id: specs
+    title: Where do you write specs?
+    hint: Approved specs are what the System pages check shipped code against
+    options:
+      - id: notion
+        label: Notion
+        files:
+          exclude:
+            - 'workflows/ingest-specs-*.md'
+            - '!workflows/ingest-specs-notion.md'
+      - id: confluence
+        label: Confluence
+        files:
+          exclude:
+            - 'workflows/ingest-specs-*.md'
+            - '!workflows/ingest-specs-confluence.md'
+      - id: none
+        label: In this repo, or none for now
+        files:
+          exclude:
+            - 'workflows/ingest-specs-*.md'
+  - id: example_data
+    title: Start with example data?
+    hint: Acme's systems, teams, pull requests, issues, incidents and specs, with the pages the workflows wrote from them
+    options:
+      - id: 'yes'
+        label: 'Yes'
+      - id: 'no'
+        label: No, start empty
+        files:
+          exclude:
+            - '**/mock-*.md'
+            - 'systems/*.md'
+            - 'teams/*.md'
+            - 'decisions/*.md'
+            - 'runbooks/*.md'
+            - 'skills/**'
+            - 'digests/*.md'
